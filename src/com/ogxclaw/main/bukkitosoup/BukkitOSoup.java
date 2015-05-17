@@ -2,11 +2,12 @@ package com.ogxclaw.main.bukkitosoup;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.ogxclaw.main.bukkitosoup.commands.BaseCommand;
 import com.ogxclaw.main.bukkitosoup.core.InjectEvents;
 import com.ogxclaw.main.bukkitosoup.core.SettingsManager;
+import java.util.logging.Level;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class BukkitOSoup extends JavaPlugin implements Listener {
 	
@@ -17,6 +18,7 @@ public class BukkitOSoup extends JavaPlugin implements Listener {
 	}
 	
 	@SuppressWarnings("deprecation")
+        @Override
 	public void onEnable(){
 		//FileConfiguration config = SettingsManager.getInstance().getConfig();
 		
@@ -36,7 +38,7 @@ public class BukkitOSoup extends JavaPlugin implements Listener {
 			Bukkit.getServer().getLogger().warning("Failed to submat stats to mcstats.org");
 		}*/
 		
-		Bukkit.getServer().getLogger().info("BukkitOSoup-Main v" + this.getDescription().getVersion() + " has been enabled.");
+		Bukkit.getServer().getLogger().log(Level.INFO, "BukkitOSoup-Main v{0} has been enabled.", this.getDescription().getVersion());
 		
 		/*if(config.getBoolean("update.autoupdate")){
 			Updater updater = new Updater(this, 70303, this.getFile(), Updater.UpdateType.DEFAULT, true);
