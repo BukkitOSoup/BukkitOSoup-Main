@@ -3,3 +3,7 @@
 /build/
 /nbproject/
 /test/
+/manifest.mf
+/BukkitOSoup-Main.iml
+*.eml
+*.xml
