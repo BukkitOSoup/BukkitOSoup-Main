@@ -16,30 +16,30 @@ public class LookupCommand extends BaseCommand {
 
 	@Override
 	public boolean onCommandPlayer(Player player, Command command, String s, String[] args) throws BukkitOSoupCommandException {
-		if(player.hasPermission("bukkitosoup.lookup") || player.hasPermission("*")){
+		if (player.hasPermission("bukkitosoup.lookup") || player.hasPermission("*")) {
 			@SuppressWarnings("deprecation")
 			Player target = player.getServer().getPlayer(args[0]);
-			if(args.length >= 1){
+			if (args.length >= 1) {
 				sendDirectedMessage(player, "Looking up " + target.getName() + "...");
-				if(Desktop.isDesktopSupported()){
+				if (Desktop.isDesktopSupported()) {
 					try {
 						Desktop.getDesktop().browse(new URI("http://www.fishbans.com/u/" + target.getName()));
 						return true;
-					}catch(Exception e){
+					} catch (Exception e) {
 						throw new BukkitOSoupCommandException("Error with connecting to servers...");
 					}
 				}
-			}else{
+			} else {
 				throw new BukkitOSoupCommandException(this.getUsage());
 			}
-		}else{
+		} else {
 			throw new PermissionDeniedException();
 		}
 		return false;
 	}
-	
+
 	@Override
-	public String getUsage(){
+	public String getUsage() {
 		return "Usage: /lookup <playername>";
 	}
 

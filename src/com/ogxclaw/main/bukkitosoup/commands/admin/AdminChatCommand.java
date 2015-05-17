@@ -14,8 +14,7 @@ import com.ogxclaw.main.bukkitosoup.utils.PermissionDeniedException;
 public class AdminChatCommand extends BaseCommand {
 
 	@Override
-	public boolean onCommandPlayer(Player player, Command command, String s,
-			String[] args) throws BukkitOSoupCommandException {
+	public boolean onCommandPlayer(Player player, Command command, String s, String[] args) throws BukkitOSoupCommandException {
 		if (player.hasPermission("bukkitosoup.adminchat") || player.hasPermission("*")) {
 			String message = "";
 			for (int i = 0; i < args.length; i++) {
@@ -23,13 +22,13 @@ public class AdminChatCommand extends BaseCommand {
 			}
 			for (World w : player.getServer().getWorlds()) {
 				for (Player p2 : w.getPlayers()) {
-					if (p2.hasPermission("bukkitosoup.adminchat.receive")  || player.hasPermission("*")) {
+					if (p2.hasPermission("bukkitosoup.adminchat.receive") || player.hasPermission("*")) {
 						p2.sendMessage("\u00a7e[AC] " + ChatColor.RESET + player.getDisplayName() + ": " + message);
 					}
 				}
 			}
 			return true;
-		}else{
+		} else {
 			throw new PermissionDeniedException();
 		}
 	}

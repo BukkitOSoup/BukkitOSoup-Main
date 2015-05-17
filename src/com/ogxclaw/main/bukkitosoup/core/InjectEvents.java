@@ -12,9 +12,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import com.ogxclaw.main.bukkitosoup.permissions.Group;
 
 public class InjectEvents implements Listener {
-	
+
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
-	public void onPlayerJoin(PlayerJoinEvent e){
+	public void onPlayerJoin(PlayerJoinEvent e) {
 		SettingsManager.getInstance().injectPlayer(e.getPlayer());
 		List<String> groups = SettingsManager.getInstance().getGroups(e.getPlayer());
 		String groupName = groups.get(groups.size() - 1).toString();
@@ -23,22 +23,22 @@ public class InjectEvents implements Listener {
 		String displayName = e.getPlayer().getDisplayName();
 		e.setJoinMessage("\u00a72[+] \u00a7ePlayer " + loginColor + displayName + "\u00a7e connected");
 	}
-	
+
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
-	public void onPlayerQuit(PlayerQuitEvent e){
+	public void onPlayerQuit(PlayerQuitEvent e) {
 		List<String> groups = SettingsManager.getInstance().getGroups(e.getPlayer());
 		String groupName = groups.get(groups.size() - 1).toString();
 		Group group = SettingsManager.getInstance().getGroup(groupName);
 		String loginColor = group.getLoginColor().replaceAll("&", "\u00a7");
 		String displayName = e.getPlayer().getDisplayName();
-		e.setQuitMessage("\u00a74[-] \u00a7ePlayer "+ loginColor + displayName + "\u00a7e disconnected");
+		e.setQuitMessage("\u00a74[-] \u00a7ePlayer " + loginColor + displayName + "\u00a7e disconnected");
 		SettingsManager.getInstance().uninjectPlayer(e.getPlayer());
 	}
-	
+
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
 	public void onPlayerChat(AsyncPlayerChatEvent e) {
 		List<String> groups = SettingsManager.getInstance().getGroups(e.getPlayer());
-		String groupname = groups.get(groups.size()-1).toString();
+		String groupname = groups.get(groups.size() - 1).toString();
 		Group group = SettingsManager.getInstance().getGroup(groupname);
 		String prefix = group.getPrefix().replaceAll("&", "\u00A7");
 		String suffix = group.getSuffix().replaceAll("&", "\u00A7");

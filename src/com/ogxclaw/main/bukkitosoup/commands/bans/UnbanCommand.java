@@ -13,55 +13,51 @@ import com.ogxclaw.main.bukkitosoup.utils.PermissionDeniedException;
 
 @Name("unban")
 public class UnbanCommand extends BaseCommand {
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommandPlayer(Player player, Command command, String s, String[] args) throws BukkitOSoupCommandException {
-		if(player.hasPermission("bukkitosoup.unban") || player.hasPermission("*")){
+		if (player.hasPermission("bukkitosoup.unban") || player.hasPermission("*")) {
 			Player target = player.getServer().getPlayer(args[0]);
-			if(target != null){
-				if(target.isBanned()){
+			if (target != null) {
+				if (target.isBanned()) {
 					plugin.getServer().getBanList(BanList.Type.NAME).pardon(target.getName());
 					sendServerMessage(player.getName() + " unbanned " + target.getName());
 					return true;
-				}else{
+				} else {
 					throw new BukkitOSoupCommandException("Player is not banned!");
 				}
-			}else{
+			} else {
 				OfflinePlayer offlineTarget = player.getServer().getOfflinePlayer(args[0]);
-				if(offlineTarget.isBanned()){
+				if (offlineTarget.isBanned()) {
 					plugin.getServer().getBanList(BanList.Type.NAME).pardon(offlineTarget.getName());
 					sendServerMessage(player.getName() + " unbanned " + offlineTarget.getName());
 					return true;
-				}else{
+				} else {
 					throw new BukkitOSoupCommandException("Player is not banned!");
 				}
 			}
-		}else{
+		} else {
 			throw new PermissionDeniedException();
 		}
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
-	public boolean onCommandConsole(CommandSender sender, Command command,
-			String s, String[] args) throws BukkitOSoupCommandException {
+	public boolean onCommandConsole(CommandSender sender, Command command, String s, String[] args) throws BukkitOSoupCommandException {
 		Player target = sender.getServer().getPlayer(args[0]);
 		if (target != null) {
 			if (target.isBanned()) {
-				plugin.getServer().getBanList(BanList.Type.NAME)
-						.pardon(target.getName());
+				plugin.getServer().getBanList(BanList.Type.NAME).pardon(target.getName());
 				sendServerMessage("CONSOLE unbanned " + target.getName());
 				return true;
 			} else {
 				throw new BukkitOSoupCommandException("Player is not banned!");
 			}
 		} else {
-			OfflinePlayer offlineTarget = sender.getServer().getOfflinePlayer(
-					args[0]);
+			OfflinePlayer offlineTarget = sender.getServer().getOfflinePlayer(args[0]);
 			if (offlineTarget.isBanned()) {
-				plugin.getServer().getBanList(BanList.Type.NAME)
-						.pardon(offlineTarget.getName());
+				plugin.getServer().getBanList(BanList.Type.NAME).pardon(offlineTarget.getName());
 				sendServerMessage("CONSOLE unbanned " + offlineTarget.getName());
 				return true;
 			} else {

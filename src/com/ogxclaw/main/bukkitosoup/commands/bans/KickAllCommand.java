@@ -12,7 +12,7 @@ import com.ogxclaw.main.bukkitosoup.utils.PermissionDeniedException;
 
 @Name("kickall")
 public class KickAllCommand extends BaseCommand {
-	
+
 	@Override
 	public boolean onCommandPlayer(Player player, Command comand, String s, String[] args) throws BukkitOSoupCommandException {
 		if (player.hasPermission("bukkitosoup.kickall") || player.hasPermission("*")) {
@@ -20,7 +20,7 @@ public class KickAllCommand extends BaseCommand {
 				for (Player p2 : w.getPlayers()) {
 					if (!p2.hasPermission("bukkitosoup.kickall.exempt") || p2.hasPermission("*")) {
 						String reason = "";
-						for(int i = 1; i < args.length; i++){
+						for (int i = 1; i < args.length; i++) {
 							reason = reason + args[i] + " ";
 						}
 						p2.kickPlayer("Kicked by " + player.getName() + " Reason:" + reason);
@@ -29,12 +29,12 @@ public class KickAllCommand extends BaseCommand {
 					}
 				}
 			}
-		}else{
+		} else {
 			throw new PermissionDeniedException();
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean onCommandConsole(CommandSender sender, Command comand, String s, String[] args) throws BukkitOSoupCommandException {
 		for (World w : plugin.getServer().getWorlds()) {

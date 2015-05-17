@@ -14,8 +14,7 @@ public class WhoCommand extends BaseCommand {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public boolean onCommandPlayer(Player player, Command command, String s,
-			String[] args) throws BukkitOSoupCommandException {
+	public boolean onCommandPlayer(Player player, Command command, String s, String[] args) throws BukkitOSoupCommandException {
 		if (player.hasPermission("bukkitosoup.who") || player.hasPermission("*")) {
 			if (args.length == 0) {
 				Player[] players = plugin.getServer().getOnlinePlayers();
@@ -30,18 +29,26 @@ public class WhoCommand extends BaseCommand {
 				ret = "Connected players: " + ret;
 				sendDirectedMessage(player, ret);
 				return true;
-			}else{
-				if(player.hasPermission("bukkitosoup.who.players") || player.hasPermission("*")){
+			} else {
+				if (player.hasPermission("bukkitosoup.who.players") || player.hasPermission("*")) {
 					Player target = player.getServer().getPlayer(args[0]);
-					/*List<String> groups = SettingsManager.getInstance().getGroups(target);
-					String groupname = groups.get(groups.size()-1).toString();
-					Group group = SettingsManager.getInstance().getGroup(groupname);
-					String prefix = group.getPrefix().replaceAll("&", "\u00A7");
-					String suffix = group.getSuffix().replaceAll("&", "\u00A7");
-					String displayname = target.getDisplayName();*/
+					/*
+					 * List<String> groups =
+					 * SettingsManager.getInstance().getGroups(target); String
+					 * groupname = groups.get(groups.size()-1).toString(); Group
+					 * group =
+					 * SettingsManager.getInstance().getGroup(groupname); String
+					 * prefix = group.getPrefix().replaceAll("&", "\u00A7");
+					 * String suffix = group.getSuffix().replaceAll("&",
+					 * "\u00A7"); String displayname = target.getDisplayName();
+					 */
 					sendDirectedMessage(player, "Name: " + target.getName());
 					sendDirectedMessage(player, "Rank: " + PlayerHandler.getInstance().getRank(target));
 					sendDirectedMessage(player, "NameTag: " + PlayerHandler.getInstance().getFullDisplayName(target));
+					sendDirectedMessage(player, "World: " + target.getWorld().getName());
+					if(player.hasPermission("bukkitosoup.who.address") || player.hasPermission("*")){
+						sendDirectedMessage(player, "IP: " + target.getAddress().getAddress().getHostAddress());
+					}
 					return true;
 				}
 				return false;

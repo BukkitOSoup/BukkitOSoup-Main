@@ -14,8 +14,7 @@ public class PMCommand extends BaseCommand {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public boolean onCommandPlayer(Player player, Command command, String s,
-			String[] args) throws BukkitOSoupCommandException {
+	public boolean onCommandPlayer(Player player, Command command, String s, String[] args) throws BukkitOSoupCommandException {
 		if (player.hasPermission("bukkitosoup.pm") || player.hasPermission("*")) {
 			Player target = player.getServer().getPlayer(args[0]);
 			String message = "";
@@ -26,21 +25,19 @@ public class PMCommand extends BaseCommand {
 				for (World w : player.getServer().getWorlds()) {
 					for (Player p2 : w.getPlayers()) {
 						if (p2.getName() == target.getName()) {
-							p2.sendMessage("\u00a7e[PM][\u00a76" + player.getName()
-									+ " \u00a7e-> \u00a76" + target.getName() + "\u00a7e] \u00a7f" + message);
-							player.sendMessage("\u00a7e[PM][\u00a76" + player.getName()
-									+ " \u00a7e-> \u00a76" + target.getName() + "\u00a7e] \u00a7f" + message);
+							p2.sendMessage("\u00a7e[PM][\u00a76" + player.getName() + " \u00a7e-> \u00a76" + target.getName() + "\u00a7e] \u00a7f" + message);
+							player.sendMessage("\u00a7e[PM][\u00a76" + player.getName() + " \u00a7e-> \u00a76" + target.getName() + "\u00a7e] \u00a7f" + message);
 							return true;
 						}
 					}
 				}
-			}else{
+			} else {
 				throw new BukkitOSoupCommandException("Player not online!");
 			}
 		} else {
 			throw new PermissionDeniedException();
 		}
-		return false; 
+		return false;
 	}
 
 	@Override

@@ -11,17 +11,17 @@ import com.ogxclaw.main.bukkitosoup.utils.PermissionDeniedException;
 
 @Name("me")
 public class MeCommand extends BaseCommand {
-	
+
 	@Override
 	public boolean onCommandPlayer(Player player, Command command, String s, String[] args) throws BukkitOSoupCommandException {
-		if(player.hasPermission("bukkitosoup.me") || player.hasPermission("*")){
+		if (player.hasPermission("bukkitosoup.me") || player.hasPermission("*")) {
 			String message = "";
-			for(int i = 0; i < args.length; i++){
+			for (int i = 0; i < args.length; i++) {
 				message = message + args[i] + " ";
 			}
 			player.getServer().broadcastMessage("\u00a77* " + ChatColor.RESET + player.getDisplayName() + " \u00a77" + message);
 			return true;
-		}else{
+		} else {
 			throw new PermissionDeniedException();
 		}
 	}
