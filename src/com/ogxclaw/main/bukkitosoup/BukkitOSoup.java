@@ -16,7 +16,7 @@ public class BukkitOSoup extends JavaPlugin implements Listener {
 	public BukkitOSoup(){
 		instance = this;
 	}
-	
+
 	@SuppressWarnings("deprecation")
         @Override
 	public void onEnable(){
