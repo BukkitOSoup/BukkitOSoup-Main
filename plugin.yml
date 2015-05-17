@@ -1,0 +1,24 @@
+name: BukkitOSoup-Main
+main: com.ogxclaw.main.bukkitosoup.BukkitOSoup
+author: Ogxclaw
+version: 1.0.0
+commands:
+  "ac":
+    description: Talk in adminchat
+  "ban":
+    description: Bans a player
+  "kickall":
+    description: Kicks all players
+  "kick":
+    description: Kicks a player
+  "lookup":
+    description: Looks up a player's bans
+  "unban":
+    description: Unbans a player
+  "help":
+    description: Displays help
+  "me":
+  "pm":
+  "who":
+  "setrank":
+    description: Sets the rank of the player
