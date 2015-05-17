@@ -2,7 +2,11 @@ name: BukkitOSoup-Main
 main: com.ogxclaw.main.bukkitosoup.BukkitOSoup
 author: Ogxclaw
 version: 1.0.0
-commands:
+commands: 
+  "delwarp":
+  "warps":
+  "warp":
+  "setwarp":
   "ac":
     description: Talk in adminchat
   "ban":
