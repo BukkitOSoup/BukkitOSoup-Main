@@ -3,6 +3,8 @@ main: com.ogxclaw.main.bukkitosoup.BukkitOSoup
 author: Ogxclaw
 version: 1.0.0
 commands: 
+  "setspawn":
+  "spawn":
   "delwarp":
   "warps":
   "warp":
